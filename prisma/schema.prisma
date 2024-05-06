@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider      = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -11,11 +11,22 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(sequence())
-  username  String   @unique
-  email     String   @unique
+  id        Int       @id @default(sequence())
+  username  String    @unique
+  email     String    @unique
   name      String
   hash      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  accounts  Account[]
+}
+
+model Account {
+  id        Int      @id @default(sequence())
+  name      String   @unique
+  balance   Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  owner     User     @relation(fields: [ownerId], references: [id])
+  ownerId   Int
 }
