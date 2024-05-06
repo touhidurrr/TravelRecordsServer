@@ -1,0 +1,21 @@
+{
+  "name": "travelrecordsserver",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "@types/bytes": "^3.1.4",
+    "bytes": "^3.1.2",
+    "elysia": "^1.0.16",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.13.0",
+    "typescript": "^5.4.5"
+  }
+}
