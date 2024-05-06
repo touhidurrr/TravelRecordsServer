@@ -4,8 +4,9 @@
   "type": "module",
   "scripts": {
     "start": "bun src/index.ts",
+    "build": "bun generate",
     "dev": "bun --watch src/index.ts",
-    "generate": "prisma generate"
+    "generate": "bunx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
