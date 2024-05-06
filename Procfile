@@ -1,3 +1,3 @@
 web: bun start
 
-release: npx prisma migrate deploy
+release: bun x prisma migrate deploy && bun x prisma generate
