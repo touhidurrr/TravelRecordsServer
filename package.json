@@ -6,7 +6,8 @@
     "start": "bun src/index.ts",
     "build": "bun generate",
     "dev": "bun --watch src/index.ts",
-    "generate": "bun run prisma generate"
+    "generate": "bunx prisma generate",
+    "heroku-postbuild": "bun generate"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
@@ -19,5 +20,6 @@
     "@types/bun": "latest",
     "prisma": "^5.13.0",
     "typescript": "^5.4.5"
-  }
+  },
+  "heroku-run-build-script": true
 }
