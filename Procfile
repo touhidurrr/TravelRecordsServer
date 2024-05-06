@@ -1,1 +1,1 @@
-web: bun start
+web: bun generate && bun start
