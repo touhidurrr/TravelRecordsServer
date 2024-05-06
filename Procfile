@@ -1,3 +1,3 @@
 web: bun start
 
-release: bunx --bun prisma generate || true
+release: bun x --bun prisma generate || true
