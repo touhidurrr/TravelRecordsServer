@@ -5,12 +5,11 @@ export const accounts = (app: Elysia) =>
   app.get(
     "/:userId/accounts",
     async ({ params: { userId } }) => {
-      const user = await prisma.user.findFirst({
-        where: { id: userId },
-        select: { accounts: true },
+      const accounts = await prisma.account.findMany({
+        where: { ownerId: userId },
       });
 
-      return user?.accounts ?? null;
+      return accounts;
     },
     {
       params: t.Object({

@@ -10,6 +10,12 @@ export const addAccount = (app: Elysia) =>
           name,
           balance,
           ownerId: userId,
+          trasactions: {
+            create: {
+              amount: balance,
+              ref: "Initial deposit"
+            },
+          },
         },
       });
 

@@ -22,11 +22,23 @@ model User {
 }
 
 model Account {
+  id          Int          @id @default(sequence())
+  name        String
+  balance     Float        @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  owner       User         @relation(fields: [ownerId], references: [id])
+  ownerId     Int
+  trasactions Trasaction[]
+
+  @@unique([name, ownerId])
+}
+
+model Trasaction {
   id        Int      @id @default(sequence())
-  name      String   @unique
-  balance   Float    @default(0)
+  amount    Float
+  ref       String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   Int
+  account   Account  @relation(fields: [accountId], references: [id])
+  accountId Int
 }
