@@ -1,3 +1,3 @@
 web: bun start
 
-release: bun generate
+release: npm install -g bun && npx generate
