@@ -24,5 +24,5 @@ export const find = (app: Elysia) =>
       query: t.Object({
         usernameOrEmail: t.String(),
       }),
-    }
+    },
   );

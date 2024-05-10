@@ -1,1 +1,1 @@
-export { getRandomBase64String } from './getRandomBase64String';
+export { getRandomBase64String } from "./getRandomBase64String";

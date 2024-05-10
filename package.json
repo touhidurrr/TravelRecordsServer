@@ -6,8 +6,8 @@
     "start": "bun src/index.ts",
     "build": "bun generate",
     "dev": "bun --watch src/index.ts",
-    "studio": "bun x prisma studio",
-    "generate": "bun x prisma generate"
+    "studio": "bunx prisma studio",
+    "generate": "bunx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",

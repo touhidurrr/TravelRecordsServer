@@ -13,7 +13,7 @@ export const addAccount = (app: Elysia) =>
           trasactions: {
             create: {
               amount: balance,
-              ref: "Initial deposit"
+              ref: "Initial deposit",
             },
           },
         },
@@ -29,5 +29,5 @@ export const addAccount = (app: Elysia) =>
         name: t.String(),
         balance: t.Numeric(),
       }),
-    }
+    },
   );

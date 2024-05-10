@@ -15,5 +15,5 @@ export const accounts = (app: Elysia) =>
       params: t.Object({
         userId: t.Numeric(),
       }),
-    }
+    },
   );

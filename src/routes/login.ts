@@ -38,5 +38,5 @@ export const login = (app: Elysia) =>
         username: t.String(),
         password: t.String(),
       }),
-    }
+    },
   );

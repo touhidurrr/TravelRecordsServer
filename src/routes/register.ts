@@ -37,5 +37,5 @@ export const register = (app: Elysia) =>
         email: t.String({ format: "email" }),
         password: t.String({ minLength: 8 }),
       }),
-    }
+    },
   );

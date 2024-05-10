@@ -20,5 +20,5 @@ export const addTransaction = (app: Elysia) =>
         accountId: t.Numeric(),
         ref: t.Union([t.String(), t.Null()]),
       }),
-    }
+    },
   );
