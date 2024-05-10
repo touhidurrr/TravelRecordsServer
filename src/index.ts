@@ -11,6 +11,7 @@ const app = new Elysia()
   .use(login)
   .use(register)
   .use(users)
+  .get("/", "TravelRecordsServer is running!")
   .listen({ port, hostname });
 
 console.log(`Server running at ${app.server?.url}`);
