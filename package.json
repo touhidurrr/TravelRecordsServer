@@ -20,6 +20,5 @@
   "devDependencies": {
     "@types/bun": "latest",
     "typescript": "^5.4.5"
-  },
-  "heroku-run-build-script": true
+  }
 }
