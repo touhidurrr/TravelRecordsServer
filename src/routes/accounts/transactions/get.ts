@@ -14,5 +14,5 @@ export const getTransactions = (app: Elysia) =>
       params: t.Object({
         accountId: t.Numeric(),
       }),
-    }
+    },
   );
