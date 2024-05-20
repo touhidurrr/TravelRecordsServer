@@ -1,18 +1,18 @@
 import { type Elysia, t } from "elysia";
-import { prisma } from "../../services/prisma";
+import { prisma } from "../../../services/prisma";
 
-export const addTransaction = (app: Elysia) =>
+export const postTransaction = (app: Elysia) =>
   app.post(
-    "/accounts/transactions/add",
+    "/transactions",
     async ({ body: { ref, amount, accountId } }) => {
-      const trasaction = await prisma.trasaction.create({
+      const transactions = await prisma.transaction.create({
         data: {
           ref,
           amount,
           accountId,
         },
       });
-      return trasaction;
+      return transactions;
     },
     {
       body: t.Object({

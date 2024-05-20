@@ -1,18 +1,18 @@
 import { type Elysia, t } from "elysia";
-import { prisma } from "../../services/prisma";
+import { prisma } from "../../../services/prisma";
 
 export const getTransactions = (app: Elysia) =>
   app.get(
-    "/accounts/:accountId/transactions",
+    "/:accountId/transactions",
     async ({ params: { accountId } }) => {
-      const trasactions = await prisma.trasaction.findMany({
+      const transactions = await prisma.transaction.findMany({
         where: { accountId },
       });
-      return trasactions;
+      return transactions;
     },
     {
       params: t.Object({
         accountId: t.Numeric(),
       }),
-    },
+    }
   );
