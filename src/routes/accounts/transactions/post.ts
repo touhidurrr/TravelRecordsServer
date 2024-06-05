@@ -5,13 +5,24 @@ export const postTransaction = (app: Elysia) =>
   app.post(
     "/transactions",
     async ({ body: { ref, amount, accountId } }) => {
-      const transactions = await prisma.transaction.create({
+      const { transactions } = await prisma.account.update({
+        where: { id: accountId },
         data: {
-          ref,
-          amount,
-          accountId,
+          balance: {
+            increment: amount,
+          },
+          transactions: {
+            create: {
+              ref,
+              amount,
+            },
+          },
+        },
+        select: {
+          transactions: true,
         },
       });
+
       return transactions;
     },
     {
@@ -20,5 +31,5 @@ export const postTransaction = (app: Elysia) =>
         accountId: t.Numeric(),
         ref: t.Union([t.String(), t.Null()]),
       }),
-    },
+    }
   );
