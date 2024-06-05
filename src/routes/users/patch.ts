@@ -2,7 +2,7 @@ import { type Elysia, t } from "elysia";
 import { prisma } from "../../services/prisma";
 
 export const patchUser = (app: Elysia) =>
-  app.post(
+  app.patch(
     "/:userId",
     async ({
       error,
@@ -45,7 +45,7 @@ export const patchUser = (app: Elysia) =>
       }),
       body: t.Object({
         name: t.Union([t.String(), t.Null()]),
-        email: t.Union([t.String(), t.Null()]),
+        email: t.Union([t.String({ format: "email" }), t.Null()]),
         password: t.Union([t.String(), t.Null()]),
         newPassword: t.Union([t.String(), t.Null()]),
       }),
