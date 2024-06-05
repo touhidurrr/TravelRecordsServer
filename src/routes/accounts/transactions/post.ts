@@ -23,7 +23,7 @@ export const postTransaction = (app: Elysia) =>
         },
       });
 
-      return transactions.map((t) => ({ ...t, ownerId: accountId }));
+      return transactions;
     },
     {
       body: t.Object({
