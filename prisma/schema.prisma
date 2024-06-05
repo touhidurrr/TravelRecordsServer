@@ -11,14 +11,17 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(sequence())
-  username  String    @unique
-  email     String    @unique
-  name      String
-  hash      String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  accounts  Account[]
+  id                Int                   @id @default(sequence())
+  username          String                @unique
+  email             String                @unique
+  name              String
+  hash              String
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  accounts          Account[]
+  ownedRecords      TravelRecord[]
+  travelRecordLinks UsersOnTravelRecord[]
+  Expense           Expense[]
 }
 
 model Account {
@@ -30,6 +33,7 @@ model Account {
   owner        User          @relation(fields: [ownerId], references: [id])
   ownerId      Int
   transactions Transaction[]
+  Expense      Expense[]
 
   @@unique([name, ownerId])
 }
@@ -41,4 +45,44 @@ model Transaction {
   createdAt DateTime @default(now())
   account   Account  @relation(fields: [accountId], references: [id])
   accountId Int
+}
+
+model Expense {
+  id             Int           @id @default(sequence())
+  title          String
+  amount         Float
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  paidby         User          @relation(fields: [payerId], references: [id])
+  payerId        Int
+  account        Account?      @relation(fields: [accountId], references: [id])
+  accountId      Int?
+  TravelRecord   TravelRecord? @relation(fields: [travelRecordId], references: [id])
+  travelRecordId Int?
+}
+
+model TravelRecord {
+  id                Int                   @id @default(sequence())
+  startdate         DateTime
+  enddate           DateTime
+  from              String
+  to                String
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  owner             User                  @relation(fields: [ownerId], references: [id])
+  ownerId           Int
+  expenses          Expense[]
+  travelRecordLinks UsersOnTravelRecord[]
+}
+
+model UsersOnTravelRecord {
+  id             Int          @id @default(sequence())
+  user           User         @relation(fields: [userId], references: [id])
+  userId         Int
+  travelRecordId Int
+  travelRecord   TravelRecord @relation(fields: [travelRecordId], references: [id])
+  joined         DateTime     @default(now())
+
+  @@unique([userId, travelRecordId])
+  @@map("UserJoinedTravelRecord")
 }
