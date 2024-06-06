@@ -21,7 +21,6 @@ model User {
   accounts          Account[]
   ownedRecords      TravelRecord[]
   travelRecordLinks UsersOnTravelRecord[]
-  Expense           Expense[]
 }
 
 model Account {
@@ -33,7 +32,6 @@ model Account {
   owner        User          @relation(fields: [ownerId], references: [id])
   ownerId      Int
   transactions Transaction[]
-  Expense      Expense[]
 
   @@unique([name, ownerId])
 }
@@ -53,10 +51,6 @@ model Expense {
   amount         Float
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
-  paidby         User          @relation(fields: [payerId], references: [id])
-  payerId        Int
-  account        Account?      @relation(fields: [accountId], references: [id])
-  accountId      Int?
   TravelRecord   TravelRecord? @relation(fields: [travelRecordId], references: [id])
   travelRecordId Int?
 }

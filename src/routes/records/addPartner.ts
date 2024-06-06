@@ -7,12 +7,6 @@ export const addPartner = (app: Elysia) =>
     async ({ error, params: { recordId }, body: { email } }) => {
       const user = await prisma.user.findFirst({
         where: { email },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          username: true,
-        }
       });
 
       if (!user) return error(400, "User not found");
