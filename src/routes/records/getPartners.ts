@@ -5,11 +5,12 @@ export const getPartners = (app: Elysia) =>
   app.get(
     "/:recordId/partners",
     async ({ params: { recordId } }) => {
-      const users = await prisma.user.findMany({
-        where: { travelRecordLinks: { some: { userId: recordId } } },
+      const res = await prisma.usersOnTravelRecord.findMany({
+        where: { travelRecordId: recordId },
+        select: { user: true },
       });
 
-      return users;
+      return res.map((u) => u.user);
     },
     {
       params: t.Object({
