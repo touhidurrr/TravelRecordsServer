@@ -1,7 +1,7 @@
 import { type Elysia, t } from "elysia";
 import { prisma } from "../../services/prisma";
 
-export const postTravelRecords = (app: Elysia) =>
+export const postTravelRecord = (app: Elysia) =>
   app.post(
     "",
     async ({ body: { ownerId, title, from, to } }) => {
