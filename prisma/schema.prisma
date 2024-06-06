@@ -63,8 +63,7 @@ model Expense {
 
 model TravelRecord {
   id                Int                   @id @default(sequence())
-  startdate         DateTime
-  enddate           DateTime
+  title             String
   from              String
   to                String
   createdAt         DateTime              @default(now())
